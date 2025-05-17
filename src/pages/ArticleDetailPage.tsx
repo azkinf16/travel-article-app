@@ -1,5 +1,5 @@
-import React from "react";
+import ArticleDetail from "../components/article/ArticleDetail";
 
 export default function ArticleDetailPage() {
-  return <div>Article Detail Page (dummy)</div>;
+  return <ArticleDetail />;
 }

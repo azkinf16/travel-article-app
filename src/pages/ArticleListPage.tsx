@@ -1,5 +1,5 @@
-import React from "react";
+import ArticleList from "../components/article/ArticleList";
 
 export default function ArticleListPage() {
-  return <div>Article List Page (dummy)</div>;
+  return <ArticleList />;
 }
