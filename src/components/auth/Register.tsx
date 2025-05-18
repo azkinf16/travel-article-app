@@ -29,7 +29,7 @@ export default function Register() {
     mutationFn: register,
     onSuccess: (data) => {
       setUser(data.user, data.jwt);
-      window.location.href = "/login";
+      window.location.href = "/";
     },
     onError: (error) => {
       console.error("Register error:", error.message);
