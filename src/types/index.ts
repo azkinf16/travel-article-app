@@ -56,7 +56,7 @@ export interface ArticleResponse {
 export interface ArticleForm {
   title: string;
   description: string;
-  cover_image_url: string;
+  cover_image_url?: string;
   category: number;
 }
 

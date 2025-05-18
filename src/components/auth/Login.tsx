@@ -7,6 +7,7 @@ import { login } from "@/lib/api";
 import type { LoginForm, AuthResponse } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Link } from "react-router-dom";
 
 const loginSchema = z.object({
   identifier: z.string().email("Invalid email address"),
@@ -27,7 +28,7 @@ export default function Login() {
     mutationFn: login,
     onSuccess: (data) => {
       setUser(data.user, data.jwt);
-      window.location.href = "/articles";
+      window.location.href = "/";
     },
     onError: (error) => {
       console.error("Login error:", error.message);
@@ -39,44 +40,79 @@ export default function Login() {
   };
 
   return (
-    <div className="bg-gray-100 min-h-[calc(100vh-128px)] flex items-center justify-center">
-      <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4">
+      <Link to="/" className="mb-6">
+        <Button
+          variant="outline"
+          className="bg-white/80 hover:bg-white text-gray-700 border-gray-300 hover:border-gray-400 shadow-md hover:shadow-lg transition-all duration-300"
+        >
+          ← Back to Home
+        </Button>
+      </Link>
+      <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md transform transition-all hover:scale-[1.02]">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">
+            Welcome Back
+          </h2>
+          <p className="text-gray-600">Please sign in to your account</p>
+        </div>
+
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div>
             <Input
               type="email"
               placeholder="Email"
               {...formRegister("identifier")}
-              className={errors.identifier ? "border-red-500" : ""}
+              className={`w-full px-4 py-3 rounded-lg border ${
+                errors.identifier ? "border-red-500" : "border-gray-300"
+              } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
             />
             {errors.identifier && (
-              <p className="text-red-500 text-sm">
+              <p className="text-red-500 text-sm mt-1">
                 {errors.identifier.message}
               </p>
             )}
           </div>
+
           <div>
             <Input
               type="password"
               placeholder="Password"
               {...formRegister("password")}
-              className={errors.password ? "border-red-500" : ""}
+              className={`w-full px-4 py-3 rounded-lg border ${
+                errors.password ? "border-red-500" : "border-gray-300"
+              } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
             />
             {errors.password && (
-              <p className="text-red-500 text-sm">{errors.password.message}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
             )}
           </div>
+
           <Button
             type="submit"
             disabled={mutation.isPending}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded cursor-pointer transition-colors"
+            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            {mutation.isPending ? "Logging in..." : "Login"}
+            {mutation.isPending ? "Signing in..." : "Sign In"}
           </Button>
+
           {mutation.isError && (
-            <p className="text-red-500 text-sm">{mutation.error.message}</p>
+            <p className="text-red-500 text-sm text-center">
+              {mutation.error.message}
+            </p>
           )}
+
+          <p className="text-center text-gray-600 mt-4">
+            Don't have an account?{" "}
+            <Link
+              to="/register"
+              className="text-blue-600 hover:text-blue-700 font-semibold"
+            >
+              Sign up
+            </Link>
+          </p>
         </form>
       </div>
     </div>

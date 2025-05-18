@@ -7,6 +7,7 @@ import { register } from "@/lib/api";
 import type { RegisterForm, AuthResponse } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Link } from "react-router-dom";
 
 const registerSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -40,53 +41,95 @@ export default function Register() {
   };
 
   return (
-    <div className="bg-gray-100 min-h-[calc(100vh-128px)] flex items-center justify-center">
-      <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4">
+      <Link to="/" className="mb-6">
+        <Button
+          variant="outline"
+          className="bg-white/80 hover:bg-white text-gray-700 border-gray-300 hover:border-gray-400 shadow-md hover:shadow-lg transition-all duration-300"
+        >
+          ← Back to Home
+        </Button>
+      </Link>
+      <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md transform transition-all hover:scale-[1.02]">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">
+            Create Account
+          </h2>
+          <p className="text-gray-600">Join our travel community today</p>
+        </div>
+
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div>
             <Input
               type="email"
               placeholder="Email"
               {...formRegister("email")}
-              className={errors.email ? "border-red-500" : ""}
+              className={`w-full px-4 py-3 rounded-lg border ${
+                errors.email ? "border-red-500" : "border-gray-300"
+              } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
             />
             {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email.message}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message}
+              </p>
             )}
           </div>
+
           <div>
             <Input
               type="text"
               placeholder="Username"
               {...formRegister("username")}
-              className={errors.username ? "border-red-500" : ""}
+              className={`w-full px-4 py-3 rounded-lg border ${
+                errors.username ? "border-red-500" : "border-gray-300"
+              } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
             />
             {errors.username && (
-              <p className="text-red-500 text-sm">{errors.username.message}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.username.message}
+              </p>
             )}
           </div>
+
           <div>
             <Input
               type="password"
               placeholder="Password"
               {...formRegister("password")}
-              className={errors.password ? "border-red-500" : ""}
+              className={`w-full px-4 py-3 rounded-lg border ${
+                errors.password ? "border-red-500" : "border-gray-300"
+              } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
             />
             {errors.password && (
-              <p className="text-red-500 text-sm">{errors.password.message}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
             )}
           </div>
+
           <Button
             type="submit"
             disabled={mutation.isPending}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded cursor-pointer transition-colors"
+            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            {mutation.isPending ? "Registering..." : "Register"}
+            {mutation.isPending ? "Creating account..." : "Create Account"}
           </Button>
+
           {mutation.isError && (
-            <p className="text-red-500 text-sm">{mutation.error.message}</p>
+            <p className="text-red-500 text-sm text-center">
+              {mutation.error.message}
+            </p>
           )}
+
+          <p className="text-center text-gray-600 mt-4">
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="text-blue-600 hover:text-blue-700 font-semibold"
+            >
+              Sign in
+            </Link>
+          </p>
         </form>
       </div>
     </div>

@@ -12,7 +12,7 @@ const api: AxiosInstance = axios.create({
 api.interceptors.request.use((config) => {
   const token = useAuthStore.getState().token;
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers["Authorization"] = `Bearer ${token}`;
   }
   return config;
 });
@@ -58,28 +58,22 @@ export const getArticleById = async (documentId: string) => {
   return response.data;
 };
 
-export const createArticle = async (data: {
+export const createArticle = (data: {
   title: string;
   description: string;
-  cover_image_url: string;
+  cover_image_url?: string;
   category: number;
-}) => {
-  const response = await api.post("/articles", { data });
-  return response.data;
-};
+}) => api.post("/articles", { data });
 
-export const updateArticle = async (
-  documentId: string,
+export const updateArticle = (
+  id: string,
   data: {
     title: string;
     description: string;
-    cover_image_url: string;
+    cover_image_url?: string;
     category: number;
   }
-) => {
-  const response = await api.put(`/articles/${documentId}`, { data });
-  return response.data;
-};
+) => api.put(`/articles/${id}`, { data });
 
 export const deleteArticle = async (documentId: string) => {
   const response = await api.delete(`/articles/${documentId}`);
