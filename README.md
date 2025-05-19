@@ -1,121 +1,97 @@
-# Travel Article App
+# Travel Article App 🌍
 
-A modern web application for sharing and discovering travel experiences through articles. Built with React and TypeScript, this application provides a platform for travel enthusiasts to share their adventures and insights.
+A modern web application built for the Datacakra Frontend Engineer Internship Assessment. This platform provides a seamless experience for users to explore, create, and manage travel articles with a beautiful and responsive interface.
 
-## 🚀 Tech Stack
+The application will be available at `https://travel-article-app-xi.vercel.app/`
 
-- **Frontend Framework:** React 19
-- **Language:** TypeScript
-- **Build Tool:** Vite
-- **Styling:** Tailwind CSS
-- **State Management:** Zustand
-- **Form Handling:** React Hook Form with Zod validation
-- **Routing:** React Router DOM
-- **HTTP Client:** Axios
-- **Data Fetching:** TanStack Query (React Query)
-- **UI Components:** Radix UI
-- **Social Sharing:** React Share
-- **Development Tools:**
-  - ESLint for code linting
-  - TypeScript for type safety
-  - PostCSS for CSS processing
-  - Tailwind CSS for utility-first styling
+## ✨ Features
 
-## 📦 Project Structure
+- 🔐 **Authentication System**
+
+  - Secure login and registration
+  - Protected routes
+  - Persistent sessions
+
+- 📝 **Article Management**
+
+  - Create, read, update, and delete articles
+  - Rich text editing
+  - Image upload support
+  - Infinite scroll for article list
+
+- 🎨 **Modern UI/UX**
+
+  - Responsive design for all devices
+  - Beautiful and intuitive interface
+  - Loading states and animations
+  - Error handling with user feedback
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- **Framework**: ReactJS with TypeScript
+- **Styling**:
+  - TailwindCSS
+  - Shadcn/UI
+- **State Management**: Zustand for global state
+- **Form Handling**:
+  - Zod for schema validation
+  - React Hook Form for form management
+- **Data Fetching**:
+  - Axios for HTTP requests
+  - TanStack React Query for data caching and state management
+- **Routing**: React Router DOM
+- **Typography**: Google Fonts (Poppins)
+
+## 📁 Project Structure
 
 ```
-travel-article-app/
-├── src/                    # Source files
-├── public/                 # Static assets
-├── dist/                   # Build output
-├── node_modules/          # Dependencies
-├── .gitignore             # Git ignore rules
-├── components.json        # Component configuration
-├── eslint.config.js       # ESLint configuration
-├── index.html             # Entry HTML file
-├── package.json           # Project dependencies and scripts
-├── postcss.config.js      # PostCSS configuration
-├── tailwind.config.js     # Tailwind CSS configuration
-├── tsconfig.json          # TypeScript configuration
-├── tsconfig.app.json      # TypeScript app configuration
-├── tsconfig.node.json     # TypeScript Node configuration
-└── vite.config.ts         # Vite configuration
+src/
+├── components/          # Reusable components
+│   ├── auth/           # Authentication components
+│   ├── common/         # Common UI components
+│   └── article/        # Article-related components
+├── pages/              # Page components
+├── lib/                # API utilities and configurations
+├── store/              # Zustand stores
+├── types/              # TypeScript type definitions
+└── styles/             # Global styles and Tailwind config
 ```
 
-## 🛠️ Installation
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
 
 1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/yourusername/travel-article-app.git
-   cd travel-article-app
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-
-   ```bash
-   npm run dev
-   ```
-
-4. Build for production:
-
-   ```bash
-   npm run build
-   ```
-
-5. Preview production build:
-   ```bash
-   npm run preview
-   ```
-
-## 🧪 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run lint` - Run ESLint
-- `npm run preview` - Preview production build
-
-## 🔧 Environment Variables
-
-Create a `.env` file in the root directory with the following variables:
-
-```env
-VITE_API_URL=your_api_url_here
+```bash
+git clone https://github.com/your-username/travel-article-app.git
 ```
 
-## 📝 Features
+2. Navigate to the project directory:
 
-- Article creation and management
-- User authentication
-- Social sharing capabilities
-- Responsive design
-- Modern UI components
-- Form validation
-- Type-safe development
+```bash
+cd travel-article-app
+```
 
-## 🤝 Contributing
+3. Install dependencies:
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+```bash
+npm install
+# or
+yarn install
+```
 
-## 📄 License
+4. Start the development server:
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 👥 Authors
-
-- Your Name - Initial work
-
-## 🙏 Acknowledgments
-
-- Thanks to all contributors who have helped shape this project
-- Special thanks to the open-source community for the amazing tools and libraries
+```bash
+npm run dev
+# or
+yarn dev
+```
